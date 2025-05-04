@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>JSON Studio - Advanced JSON Editor and Validator</title>
+    <meta name="title" content="JSON Studio - Advanced JSON Editor and Validator">
+    <meta name="description" content="Free online JSON editor with advanced features including validation, formatting, conversion, and real-time preview. Perfect for developers and data analysts.">
+    <meta name="keywords" content="JSON editor, JSON validator, JSON formatter, JSON to YAML, JSON to XML, JSON tools">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://usmanovrustam.github.io/jsonstudio/">
+    <meta property="og:title" content="JSON Studio - Advanced JSON Editor and Validator">
+    <meta property="og:description" content="Free online JSON editor with advanced features including validation, formatting, conversion, and real-time preview.">
+    <meta property="og:image" content="https://usmanovrustam.github.io/jsonstudio/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://usmanovrustam.github.io/jsonstudio/">
+    <meta property="twitter:title" content="JSON Studio - Advanced JSON Editor and Validator">
+    <meta property="twitter:description" content="Free online JSON editor with advanced features including validation, formatting, conversion, and real-time preview.">
+    <meta property="twitter:image" content="https://usmanovrustam.github.io/jsonstudio/preview.png">
+    
+    <!-- SEO -->
+    <link rel="canonical" href="https://usmanovrustam.github.io/jsonstudio/">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="JSON Studio">
+    
+    <meta name="theme-color" content="#2196F3">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="icon" type="image/png" href="icons/favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/material.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h1>JSON Studio</h1>
+            </div>
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <h3>File</h3>
+                    <button id="newButton" class="sidebar-button">
+                        <i class="fas fa-file"></i>
+                        New File
+                    </button>
+                    <button id="importButton" class="sidebar-button">
+                        <i class="fas fa-file-import"></i>
+                        Open File
+                    </button>
+                    <button id="downloadButton" class="sidebar-button">
+                        <i class="fas fa-save"></i>
+                        Save File
+                    </button>
+                </div>
+                <div class="sidebar-section">
+                    <h3>Open Files</h3>
+                    <div id="fileList" class="file-list"></div>
+                </div>
+                <div class="sidebar-section">
+                    <h3>Tools</h3>
+                    <button class="sidebar-button" id="convertToYamlButton">
+                        <i class="fas fa-file-code"></i>
+                        Convert to YAML
+                    </button>
+                    <button class="sidebar-button" id="convertToXmlButton">
+                        <i class="fas fa-file-code"></i>
+                        Convert to XML
+                    </button>
+                    <button class="sidebar-button" id="convertToCsvButton">
+                        <i class="fas fa-file-alt"></i>
+                        Convert to CSV
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="toolbar">
+                <div class="toolbar-group">
+                    <button id="formatButton" class="toolbar-button" title="Format JSON">
+                        <i class="fas fa-code"></i>
+                    </button>
+                    <button id="minifyButton" class="toolbar-button" title="Minify JSON">
+                        <i class="fas fa-compress-alt"></i>
+                    </button>
+                    <button id="validateButton" class="toolbar-button" title="Validate JSON">
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+                <div class="toolbar-group">
+                    <button id="shortcutsButton" class="toolbar-button" title="Keyboard Shortcuts">
+                        <i class="fas fa-keyboard"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search in JSON...">
+                </div>
+                <select id="searchType" class="search-type">
+                    <option value="all">All Fields</option>
+                    <option value="keys">Keys Only</option>
+                    <option value="values">Values Only</option>
+                </select>
+            </div>
+
+            <div class="editor-container">
+                <div class="editor-header">
+                    <h3>JSON Editor</h3>
+                    <div class="editor-actions">
+                        <button id="clearButton" class="icon-button" title="Clear">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="jsonEditor"></div>
+                <div id="errorMessage" class="error-message"></div>
+                <button id="addButton" class="primary-button">
+                    <i class="fas fa-plus"></i>
+                    Add Item
+                </button>
+            </div>
+
+            <div class="preview-container">
+                <div class="preview-header">
+                    <h3>JSON Preview</h3>
+                    <div class="preview-actions">
+                        <span id="itemCount" class="item-count">0 items</span>
+                    </div>
+                </div>
+                <div id="jsonItems" class="json-items"></div>
+            </div>
+        </main>
+    </div>
+
+    <input type="file" id="fileInput" accept=".json" style="display: none;">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/lint/lint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/lint/json-lint.min.js"></script>
+    <script src="script.js"></script>
+
+    <div class="modal" id="shortcutsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Keyboard Shortcuts</h3>
+                <button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="shortcuts-section">
+                    <h4>File Operations</h4>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + N</span>
+                        <span class="description">New File</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + O</span>
+                        <span class="description">Open File</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + S</span>
+                        <span class="description">Save File</span>
+                    </div>
+                </div>
+                <div class="shortcuts-section">
+                    <h4>Editor</h4>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + Space</span>
+                        <span class="description">Trigger Autocomplete</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="key">Tab</span>
+                        <span class="description">Indent Code</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + F</span>
+                        <span class="description">Search</span>
+                    </div>
+                </div>
+                <div class="shortcuts-section">
+                    <h4>JSON Operations</h4>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + Enter</span>
+                        <span class="description">Add Item</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + Shift + F</span>
+                        <span class="description">Format JSON</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + Shift + M</span>
+                        <span class="description">Minify JSON</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

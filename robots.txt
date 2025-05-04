@@ -1,6 +1,12 @@
 User-agent: *
 Allow: /
 Disallow: /icons/
-Disallow: /images/
+Disallow: /.github/
+Disallow: /.git/
 
-Sitemap: https://jsonstudio.app/sitemap.xml 
+# Allow search engines to read JS and CSS
+Allow: *.js
+Allow: *.css
+
+# Sitemap location
+Sitemap: https://usmanovrustam.github.io/jsonstudio/sitemap.xml 

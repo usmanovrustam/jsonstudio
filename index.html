@@ -3,10 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Studio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Primary Meta Tags -->
+    <title>JSON Studio - Advanced JSON Editor and Validator</title>
+    <meta name="title" content="JSON Studio - Advanced JSON Editor and Validator">
+    <meta name="description" content="Free online JSON editor with advanced features including validation, formatting, conversion, and real-time preview. Perfect for developers and data analysts.">
+    <meta name="keywords" content="JSON editor, JSON validator, JSON formatter, JSON to YAML, JSON to XML, JSON tools">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://usmanovrustam.github.io/json-studio/">
+    <meta property="og:title" content="JSON Studio - Advanced JSON Editor and Validator">
+    <meta property="og:description" content="Free online JSON editor with advanced features including validation, formatting, conversion, and real-time preview.">
+    <meta property="og:image" content="https://usmanovrustam.github.io/json-studio/preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://usmanovrustam.github.io/json-studio/">
+    <meta property="twitter:title" content="JSON Studio - Advanced JSON Editor and Validator">
+    <meta property="twitter:description" content="Free online JSON editor with advanced features including validation, formatting, conversion, and real-time preview.">
+    <meta property="twitter:image" content="https://usmanovrustam.github.io/json-studio/preview.png">
+    
+    <!-- SEO -->
+    <link rel="canonical" href="https://usmanovrustam.github.io/json-studio/">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="JSON Studio">
+    
+    <meta name="theme-color" content="#2196F3">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="icon" type="image/png" href="icons/favicon.png">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/material.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -33,9 +62,7 @@
                 </div>
                 <div class="sidebar-section">
                     <h3>Open Files</h3>
-                    <div id="fileList" class="file-list">
-                        <!-- Files will be listed here -->
-                    </div>
+                    <div id="fileList" class="file-list"></div>
                 </div>
                 <div class="sidebar-section">
                     <h3>Tools</h3>
@@ -126,7 +153,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/lint/json-lint.min.js"></script>
     <script src="script.js"></script>
 
-    <!-- Keyboard Shortcuts Modal -->
     <div class="modal" id="shortcutsModal">
         <div class="modal-content">
             <div class="modal-header">

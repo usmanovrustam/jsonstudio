@@ -37,6 +37,21 @@
                         <!-- Files will be listed here -->
                     </div>
                 </div>
+                <div class="sidebar-section">
+                    <h3>Tools</h3>
+                    <button class="sidebar-button" id="convertToYamlButton">
+                        <i class="fas fa-file-code"></i>
+                        Convert to YAML
+                    </button>
+                    <button class="sidebar-button" id="convertToXmlButton">
+                        <i class="fas fa-file-code"></i>
+                        Convert to XML
+                    </button>
+                    <button class="sidebar-button" id="convertToCsvButton">
+                        <i class="fas fa-file-alt"></i>
+                        Convert to CSV
+                    </button>
+                </div>
             </div>
         </nav>
 
@@ -51,6 +66,11 @@
                     </button>
                     <button id="validateButton" class="toolbar-button" title="Validate JSON">
                         <i class="fas fa-check"></i>
+                    </button>
+                </div>
+                <div class="toolbar-group">
+                    <button id="shortcutsButton" class="toolbar-button" title="Keyboard Shortcuts">
+                        <i class="fas fa-keyboard"></i>
                     </button>
                 </div>
             </div>
@@ -105,5 +125,62 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/lint/lint.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/lint/json-lint.min.js"></script>
     <script src="script.js"></script>
+
+    <!-- Keyboard Shortcuts Modal -->
+    <div class="modal" id="shortcutsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Keyboard Shortcuts</h3>
+                <button class="close-button">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="shortcuts-section">
+                    <h4>File Operations</h4>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + N</span>
+                        <span class="description">New File</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + O</span>
+                        <span class="description">Open File</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + S</span>
+                        <span class="description">Save File</span>
+                    </div>
+                </div>
+                <div class="shortcuts-section">
+                    <h4>Editor</h4>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + Space</span>
+                        <span class="description">Trigger Autocomplete</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="key">Tab</span>
+                        <span class="description">Indent Code</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + F</span>
+                        <span class="description">Search</span>
+                    </div>
+                </div>
+                <div class="shortcuts-section">
+                    <h4>JSON Operations</h4>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + Enter</span>
+                        <span class="description">Add Item</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + Shift + F</span>
+                        <span class="description">Format JSON</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <span class="key">Ctrl + Shift + M</span>
+                        <span class="description">Minify JSON</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html> 

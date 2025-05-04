@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/material.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h1>JSON Studio</h1>
+            </div>
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <h3>File</h3>
+                    <button id="newButton" class="sidebar-button">
+                        <i class="fas fa-file"></i>
+                        New File
+                    </button>
+                    <button id="importButton" class="sidebar-button">
+                        <i class="fas fa-file-import"></i>
+                        Open File
+                    </button>
+                    <button id="downloadButton" class="sidebar-button">
+                        <i class="fas fa-save"></i>
+                        Save File
+                    </button>
+                </div>
+                <div class="sidebar-section">
+                    <h3>Open Files</h3>
+                    <div id="fileList" class="file-list">
+                        <!-- Files will be listed here -->
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="toolbar">
+                <div class="toolbar-group">
+                    <button id="formatButton" class="toolbar-button" title="Format JSON">
+                        <i class="fas fa-code"></i>
+                    </button>
+                    <button id="minifyButton" class="toolbar-button" title="Minify JSON">
+                        <i class="fas fa-compress-alt"></i>
+                    </button>
+                    <button id="validateButton" class="toolbar-button" title="Validate JSON">
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search in JSON...">
+                </div>
+                <select id="searchType" class="search-type">
+                    <option value="all">All Fields</option>
+                    <option value="keys">Keys Only</option>
+                    <option value="values">Values Only</option>
+                </select>
+            </div>
+
+            <div class="editor-container">
+                <div class="editor-header">
+                    <h3>JSON Editor</h3>
+                    <div class="editor-actions">
+                        <button id="clearButton" class="icon-button" title="Clear">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="jsonEditor"></div>
+                <div id="errorMessage" class="error-message"></div>
+                <button id="addButton" class="primary-button">
+                    <i class="fas fa-plus"></i>
+                    Add Item
+                </button>
+            </div>
+
+            <div class="preview-container">
+                <div class="preview-header">
+                    <h3>JSON Preview</h3>
+                    <div class="preview-actions">
+                        <span id="itemCount" class="item-count">0 items</span>
+                    </div>
+                </div>
+                <div id="jsonItems" class="json-items"></div>
+            </div>
+        </main>
+    </div>
+
+    <input type="file" id="fileInput" accept=".json" style="display: none;">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/lint/lint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/lint/json-lint.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
